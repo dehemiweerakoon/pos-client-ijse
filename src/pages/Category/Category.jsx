@@ -57,13 +57,11 @@ const Category = () => {
             return(
               <Col md={3} className='mt-3'>
               <Card className='shadow-lg p-2' style={{backgroundColor:'#ECECEC'}} role="button">
-              <Image src={images[index]} alt='hello' className='rounded-5 mt-2'  />
+              <Image src={images[index]} alt='hello' className='rounded-5'  />
               <Card.Body>
-                <Card.Title>{item.name}</Card.Title>
-                <Card.Text>
-                
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                 <h5 className='fw-semibold'>{item.name}</h5>
+                 <h6 className='text-secondary'>$ {item.price}</h6>
+                <Button variant="light btn-outline-dark" className='mt-1 rounded-5'>Add to Cart</Button>
               </Card.Body>
               </Card>
              </Col>

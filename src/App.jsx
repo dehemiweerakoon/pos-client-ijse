@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import { Card } from 'react-bootstrap';
 import ProtectedUtills from './utills/ProtectedUtills';
 import Category from './pages/Category/Category'
+import Item from './pages/Item/Item';
 function App() {
  
 
@@ -17,6 +18,7 @@ function App() {
       <Route path='/home' element={<Home/>}/>
       <Route path='/cart' element={<Card/>}/>
        <Route path='category/:id' element={<Category/>}/>
+       <Route path='/items' element={<Item/>}/>
       </Route>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>

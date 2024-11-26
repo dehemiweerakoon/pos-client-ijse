@@ -41,8 +41,8 @@ const NavBar = () => {
 <Container className='p-2 '>
   <Row className='align-items-center text-align-center mt-1' >
     <Col md={2} className='d-flex flex-row'>
-     <Image src={carts} alt='image' fluid/>
-    <h4>Shop Cart</h4> 
+     <Image src={carts} alt='image' fluid role='button'/>
+    <Link style={{ textDecoration: 'none',color:'black'}} to={'/home'}><h4>Shop Cart</h4></Link>
     </Col>
     <Col md={1}>
     <Dropdown>
@@ -62,7 +62,7 @@ const NavBar = () => {
     
     </Col>
     <Col md={3}>
-   <Link to=""  style={{ textDecoration: 'none',color:'black'}}>Items</Link>
+   <Link to="/items"  style={{ textDecoration: 'none',color:'black'}}>Items</Link>
     </Col>
     <Col md={3}>
   <div className="position-relative">
