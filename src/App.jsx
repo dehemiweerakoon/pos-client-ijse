@@ -3,10 +3,10 @@ import Login from './pages/Login/Login'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './pages/Register/Register';
 import Home from './pages/Home/Home';
-import { Card } from 'react-bootstrap';
 import ProtectedUtills from './utills/ProtectedUtills';
 import Category from './pages/Category/Category'
 import Item from './pages/Item/Item';
+import Cart from './components/Cart/Cart';
 function App() {
  
 
@@ -16,7 +16,7 @@ function App() {
     <Routes>
       <Route element={<ProtectedUtills/>}>
       <Route path='/home' element={<Home/>}/>
-      <Route path='/cart' element={<Card/>}/>
+      <Route path='/cart' element={<Cart/>}/>
        <Route path='category/:id' element={<Category/>}/>
        <Route path='/items' element={<Item/>}/>
       </Route>
