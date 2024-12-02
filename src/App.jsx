@@ -7,6 +7,7 @@ import ProtectedUtills from './utills/ProtectedUtills';
 import Category from './pages/Category/Category'
 import Item from './pages/Item/Item';
 import Cart from './components/Cart/Cart';
+import CategoryList from './components/CategoryList/CategoryList';
 function App() {
  
 
@@ -18,6 +19,7 @@ function App() {
       <Route path='/home' element={<Home/>}/>
       <Route path='/cart' element={<Cart/>}/>
        <Route path='category/:id' element={<Category/>}/>
+       <Route path='/search/items' element={<CategoryList/>}/>
        <Route path='/items' element={<Item/>}/>
       </Route>
       <Route path='/login' element={<Login/>}/>

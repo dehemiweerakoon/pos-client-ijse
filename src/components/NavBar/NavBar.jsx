@@ -1,17 +1,48 @@
-/* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Dropdown, FloatingLabel, Form, Image, Row } from 'react-bootstrap'
 import carts from '../../assets/carts.png'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { getRequest } from '../../services/ApiSerives'
+import CategoryList from '../CategoryList/CategoryList'
 const NavBar = () => {
  
   const [categories,setCategories] = useState([]);
-
+  const user_name= sessionStorage.getItem('username');
+  const [items,setItems] = useState([]);
+  const navigate = useNavigate();
   const getAllcategories = async()=>{
    const response = await getRequest("/categories");
    setCategories(response.data);
+  }
+  const [searchInput,setSearchInput]=useState("");
+  const LogOut=()=>{
+  navigate("/login");
+  sessionStorage.setItem('token',"");
+  sessionStorage.setItem('username',"");
+  sessionStorage.setItem('user_id',"");
+  
+  }
+  const search=async()=>{
+    console.log("kkkk")
+    if (searchInput.length<2){
+      window.location.href="/items";
+    }else{
+     //
+     const response = await getRequest("/items");
+      const allItems = response.data;
+      // Filter items based on search input
+      const filteredItems = allItems.filter((item) =>
+        item.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      console.log();
+      setItems(filteredItems);
+      navigate("/search/items",{state:{filteredItems}})
+      
+    }
+  }
+  const handlesearchvalue=(event)=>{
+     setSearchInput(event.target.value);
   }
   useEffect(()=>{
    getAllcategories();
@@ -61,7 +92,7 @@ const NavBar = () => {
     </Dropdown>
     
     </Col>
-    <Col md={3}>
+    <Col md={2}>
    <Link to="/items"  style={{ textDecoration: 'none',color:'black'}}>Items</Link>
     </Col>
     <Col md={3}>
@@ -70,8 +101,9 @@ const NavBar = () => {
       type="text"
       placeholder="Search"
       className="rounded-5 p-2"
-      style={{ paddingRight: "40px" }} // Add padding to prevent text overlap with the icon
-    />
+      style={{ paddingRight: "40px" }} 
+      value={searchInput}// Add padding to prevent text overlap with the icon
+    onChange={handlesearchvalue}/>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
@@ -79,16 +111,26 @@ const NavBar = () => {
       fillRule="currentColor"
       className="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3"
       viewBox="0 0 16 16"
+      onClick={search}
     >
       <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
     </svg>
   </div>
 </Col>
-<Col className='d-flex flex-row' md={1}>
-<svg xmlns="http://www.w3.org/2000/svg"  width="18" height="18" fillRule="currentColor" className="m-1 bi bi-person" viewBox="0 0 16 16">
-  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-</svg>
- Account
+<Col className='d-flex flex-row' md={2}>
+<Dropdown>
+      <Dropdown.Toggle variant='light'>
+        <svg xmlns="http://www.w3.org/2000/svg"  width="18" height="18" fillRule="currentColor" className="m-1 bi bi-person" viewBox="0 0 16 16">
+          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+        </svg>
+      {user_name}
+      </Dropdown.Toggle>
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={LogOut}>LogOut</Dropdown.Item>
+      </Dropdown.Menu>
+ </Dropdown>
+
+ 
 </Col>
 <Col md={1}>
 <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fillRule="currentColor" className="m-1 bi bi-cart-fill" viewBox="0 0 16 16">

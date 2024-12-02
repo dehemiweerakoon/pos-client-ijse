@@ -16,14 +16,10 @@ const Item = () => {
       setItems(response.data);
     }
     const user_id = sessionStorage.getItem('user_id');
-    const [item_id,setItem_id] = useState(1);
-    const [carts,setCarts] = useState({
-        id: user_id,
-        cartItems:[],
-        totalAmount:0
-      });
-      const createCart = async(event)=>{
-        event.preventDefault();
+   // const [item_id,setItem_id] = useState(1);
+      const createCart = async(item_id)=>{
+        console.log(item_id);
+      //  event.preventDefault();
         const save_cart = {
           id: parseInt(user_id),
           cartItems:{
@@ -34,7 +30,7 @@ const Item = () => {
           quantity:parseInt(1)
         }
         //console.log(save_cart);
-        const respnose = await postRequest(`/${user_id}/addItem/${item_id}/${1}`);
+       const respnose = await postRequest(`/${user_id}/addItem/${item_id}/${1}`);
         window.location.reload();
       }
     const getImage =async() =>{
@@ -89,7 +85,7 @@ const Item = () => {
             <Button
               variant="light btn-outline-dark fw-semibold"
               className="mt-1 rounded-5"
-              onClick={createCart}
+              onClick={(event)=>{createCart(item.id)}}
             >
               Add to Cart
             </Button>
@@ -98,9 +94,12 @@ const Item = () => {
       </Col>
         ))
     ) : (
-        <div className="spinner-border" role="status">
+       <div className='d-flex justify-content-center'>
+         <div className="spinner-border " role="status">
         <span className="visually-hidden">Loading...</span>
         </div>
+       </div>
+       
     )
     }
       </Row>

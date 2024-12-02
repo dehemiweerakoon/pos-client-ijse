@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getRequest } from '../../services/ApiSerives'
+import { getRequest, postRequest } from '../../services/ApiSerives'
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -17,6 +17,23 @@ const Category = () => {
     console.log(response.data);
     setItems(response.data);
   }
+  const user_id = sessionStorage.getItem('user_id');
+  const [item_id,setItem_id] = useState(1);
+    const createCart = async(event)=>{
+      event.preventDefault();
+      const save_cart = {
+        id: parseInt(user_id),
+        cartItems:{
+          item:{
+            id: parseInt(item_id),
+          }
+        },
+        quantity:parseInt(1)
+      }
+      //console.log(save_cart);
+      const respnose = await postRequest(`/${user_id}/addItem/${item_id}/${1}`);
+      window.location.reload();
+    }
   const getImage =async() =>{
     console.log("")
      try {
@@ -61,7 +78,7 @@ const Category = () => {
               <Card.Body>
                  <h5 className='fw-semibold'>{item.name}</h5>
                  <h6 className='text-secondary'>$ {item.price}</h6>
-                <Button variant="light btn-outline-dark" className='mt-1 rounded-5'>Add to Cart</Button>
+                <Button variant="light btn-outline-dark" className='mt-1 rounded-5' onClick={(event)=>{createCart(event);setItem_id(item_id)}}>Add to Cart</Button>
               </Card.Body>
               </Card>
              </Col>
