@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Dropdown, FloatingLabel, Form, Image, Row } from 'react-bootstrap'
+import { Button, Col, Container, Dropdown, FloatingLabel, Form, Image, Nav, Navbar, NavDropdown, Offcanvas, Row } from 'react-bootstrap'
 import carts from '../../assets/carts.png'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { getRequest } from '../../services/ApiSerives'
@@ -23,6 +23,12 @@ const NavBar = () => {
   sessionStorage.setItem('user_id',"");
   
   }
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const search=async()=>{
     console.log("kkkk")
     if (searchInput.length<2){
@@ -58,18 +64,86 @@ const NavBar = () => {
 </svg>
      041-6792340
     </Col>
-    <Col md={5}>
+    <Col md={4}>
     Get 50% Off On Selected Items | Shop Now
     </Col>
     <Col md={1} sm={0.5}>
       Eng
     </Col>
-    <Col md={1} sm={0.5}>
-      Location
+    <Col md={2} sm={0.5}>
+      Location: SRI LANKA
     </Col>
   </Row>
 </Container>
-<Container className='p-2 '>
+    {['lg'].map((expand)=>(
+    <>
+<Navbar key={expand} expand={expand} className="bg-body-tertiary ">
+   <Container>
+      <Image src={carts} alt='image' fluid role='button'/>
+        <Navbar.Brand href="/home"><Link style={{ textDecoration: 'none',color:'black'}} to={'/home'}><h4>Shop Cart</h4></Link></Navbar.Brand>
+        <Navbar.Toggle  aria-controls={`offcanvasNavbar-expand-${expand}`}/>
+        <Navbar.Offcanvas  id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end">
+        <Offcanvas.Body>
+              <Nav className="me-auto">
+                <NavDropdown title="Category" id="basic-nav-dropdown">
+                  {categories && categories.map((category,index)=>{
+                  return(
+                
+                    <NavDropdown.Item key={index} href={`/category/${category.id}`}>{category.name}</NavDropdown.Item>
+                
+                  ) }) }
+                </NavDropdown>
+                <Nav.Link href="/items">Items</Nav.Link>
+                <Nav.Item>
+                                  
+                          <div className="position-relative">
+                            <Form.Control
+                              type="text"
+                              placeholder="Search"
+                              className="rounded-5 p-2"
+                              style={{ paddingRight: "40px" }} 
+                              value={searchInput}// Add padding to prevent text overlap with the icon
+                            onChange={handlesearchvalue}/>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fillRule="currentColor"
+                              className="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3"
+                              viewBox="0 0 16 16"
+                              onClick={search}
+                            >
+                              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                            </svg>
+                          </div> 
+              </Nav.Item>
+              </Nav>
+              <Nav>
+              <Nav.Item>
+                <NavDropdown title={user_name} >
+                      <NavDropdown.Item onClick={LogOut}>LogOut</NavDropdown.Item>
+                    
+              </NavDropdown>
+              </Nav.Item>
+            
+                    <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fillRule="currentColor" className="m-2 bi bi-cart-fill" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                  </svg>
+                  <Nav.Link href={"/cart"} style={{ textDecoration: 'none',color:'black'}}>Cart</Nav.Link>
+            </Nav> 
+        </Offcanvas.Body>
+         
+        </Navbar.Offcanvas>
+        </Container>
+    </Navbar>
+
+    </>
+    ))}
+
+
+{/* <Container className='p-2 '>
   <Row className='align-items-center text-align-center mt-1' >
     <Col md={2} className='d-flex flex-row'>
      <Image src={carts} alt='image' fluid role='button'/>
@@ -139,7 +213,9 @@ const NavBar = () => {
 <Link to={"/cart"} style={{ textDecoration: 'none',color:'black'}}>Cart</Link>
 </Col>
   </Row>
-</Container>
+</Container> */}
+
+      
     </>
   )
 }

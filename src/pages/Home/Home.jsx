@@ -15,6 +15,7 @@ import sport from '../../assets/sport set.png'
 import stationary from '../../assets/stationary items.png'
 import shopping from '../../assets/shopping items.png'
 import Footer from '../../components/Footer/Footer';
+import { Link } from 'react-router-dom';
 
 
 const Home = () => {
@@ -45,50 +46,71 @@ const Home = () => {
         <Row >
           <Col md={2} className='shadow  bg-tertiary rounded p-3' role="button">
             <p>Beauty Products</p>
+            <Link to={'/category/6'}>            
             <Image src={beauty} fluid className='rounded-5'/>
+            </Link>
           </Col>
           <Col md={2} className='shadow  bg-tertiary rounded p-3'role="button">
           <p>Books</p>
-           <Image src={books} fluid className='rounded-5' />
+          <Link to="/category/5">
+            <Image src={books} fluid className='rounded-5' />
+          </Link>
+           
           </Col>
           <Col md={2} className='shadow  bg-tertiary rounded p-3' role="button">
           <p>Clothing</p>
+          <Link to={'/category/3'}>
            <Image src={cloth} fluid  className='rounded-5'/>
+           </Link>
           </Col>
           <Col md={2} className='shadow  bg-tertiary rounded p-3'role="button">
           <p>Furniture</p>
-           <Image src={furniture} fluid className='rounded-5'/>
+          <Link to={'/category/7'}>
+          <Image src={furniture} fluid className='rounded-5'/>
+          </Link>
+           
           </Col>
           <Col md={2} className='shadow  bg-tertiary rounded p-3' role="button">
           <p>Home Appliances</p>
-           <Image src={home_appliences} fluid  className='rounded-5'/>
+          <Link to={'/category/4'}>
+            <Image src={home_appliences} fluid  className='rounded-5'/>
+          </Link>
           </Col>
           <Col md={2} className='shadow  bg-tertiary rounded p-3'role="button">
-          <p>Electonics</p>
-           <Image src={electronic} fluid className='rounded-5'/>
+          <p>Electronics</p>
+          <Link to={'/category/1'}>
+          <Image src={electronic} fluid className='rounded-5'/>
+          </Link>
           </Col>
         </Row>
         <Row className='mt-2'>
         <Col md={2} className='shadow  bg-tertiary rounded p-3'role="button">
            <p>Groceries</p>
+           <Link to={'/category/2'}>
            <Image src={shopping}fluid className='rounded-5'/>
+           </Link>
           </Col>
           <Col md={2} className='shadow  bg-tertiary rounded p-3' role="button">
           <p>Sports Equipment</p>
+          <Link to='/category/8'>
            <Image src={sport} fluid className='rounded-5'/>
+          </Link>
           </Col>
           <Col md={2} className='shadow  bg-tertiary rounded p-3' role="button">
           <p>Toys</p>
-           <Image src={toys} fluid className='rounded-5'/>
+          <Link to={'/category/9'}>
+          <Image src={toys} fluid className='rounded-5'/>
+          </Link>
           </Col>
           <Col md={2} className='shadow  bg-tertiary rounded p-3' role="button">
           <p>Stationery</p>
-           <Image src={stationary} fluid className='rounded-5'/>
+          <Link to={'/category/10'}>
+          <Image src={stationary} fluid className='rounded-5'/>
+          </Link>
           </Col>
         </Row>
       </Container>
-  
-   </>
+</>
   )
 }
 

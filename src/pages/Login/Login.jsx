@@ -10,6 +10,7 @@ const Login = () => {
 
   const[username,setUsername] = useState("");
   const[password,setPassword] = useState("")
+  const[error,setError] = useState("");
   const navigate =useNavigate()
 
 
@@ -24,15 +25,29 @@ const Login = () => {
       'username':username,
       'password':password
     }
-    const response = await axios.post("http://localhost:9000/auth/login",data);
+    try{
+      
+       const response = await axios.post("http://localhost:9000/auth/login",data);
+      // console.log(response);
 
-    console.log(response.data);
+      if(response.status==401){
+        // 
+        console.log("dkjsdhjsdsdsdsd")
+        setError(response.data);
+      }
 
     sessionStorage.setItem('token',response.data.token);
     sessionStorage.setItem('username',response.data.username);
     sessionStorage.setItem('user_id',response.data.id);
-    axios.defaults.headers.common['Authorization'] =`Bearer ${response.data.token}`
+    axios.defaults.headers.common['Authorization'] =`Bearer ${response.data.token}`;
     navigate("/home")
+    }catch(ex){
+      //
+      setError("Password or username incorrect");
+      setPassword("")
+      setUsername("")
+    }
+   
   }
 
   return (
@@ -63,6 +78,9 @@ const Login = () => {
       </Link>
       
     </Form>
+    {
+      error?? <><p>{error}</p></>
+    }
     <hr/>
     </Col>
     <Col md={6}>

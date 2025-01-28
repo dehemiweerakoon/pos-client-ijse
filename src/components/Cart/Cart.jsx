@@ -62,9 +62,12 @@ const Cart = () => {
           <th>Price</th>
           <th>Qty</th>
           <th>delete</th>
-        </tr>
+        </tr>    
       </thead>
       <tbody>
+      {carts?.cartItems?.length === 0 && (
+        <div className='m-5 p-5'><h1>Your cart is empty!</h1></div>
+      )}
        {
         carts.cartItems && carts.cartItems.map((items,index)=>{
           return(
