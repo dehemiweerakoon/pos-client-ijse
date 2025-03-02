@@ -43,7 +43,7 @@ const Login = () => {
     navigate("/home")
     }catch(ex){
       //
-      setError("Password or username incorrect");
+      setError("password or username incorrect");
       setPassword("")
       setUsername("")
     }
@@ -62,12 +62,12 @@ const Login = () => {
       <FloatingLabel
         controlId="floatingInput"
         label="Email address"
-        className="mb-3"
+        className="mb-3 p-1"
       >
-        <Form.Control type="email" placeholder="name@example.com" className='rounded-5 p-2' value={username} onChange={onHandleEmail}/>
+        <Form.Control type="email" placeholder="name@example.com" className='rounded-3 p-3' value={username} onChange={onHandleEmail}/>
       </FloatingLabel>
-      <FloatingLabel controlId="floatingPassword" label="Password">
-        <Form.Control type="password" placeholder="Password" className='rounded-5 p-2'  value={password} onChange={onHandlePassword}/>
+      <FloatingLabel controlId="floatingPassword" label="Password" className='p-1'>
+        <Form.Control type="password" placeholder="Password" className='rounded-3 p-3'  value={password} onChange={onHandlePassword}/>
       </FloatingLabel>
       <div className='d-grid mt-3'>
      <Button className='rounded-5 p-2' variant='secondary' onClick={onHandleSubmit}>Sign In</Button>   

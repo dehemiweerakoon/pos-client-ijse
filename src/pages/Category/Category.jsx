@@ -78,7 +78,7 @@ const Category = () => {
               <Card.Body>
                  <h5 className='fw-semibold'>{item.name}</h5>
                  <h6 className='text-secondary'>$ {item.price}</h6>
-                <Button variant="light btn-outline-dark" className='mt-1 rounded-5' onClick={(event)=>{createCart(event);setItem_id(item_id)}}>Add to Cart</Button>
+                <Button variant="light btn-outline-dark" className='mt-1 rounded-5' onClick={(event)=>{setItem_id(item.id);createCart(event)}}>Add to Cart</Button>
               </Card.Body>
               </Card>
              </Col>
