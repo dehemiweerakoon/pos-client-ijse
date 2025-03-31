@@ -14,3 +14,10 @@ body{
 .link{
   text-decoration: none;
 }
+.hover-zoom img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-zoom:hover img {
+  transform: scale(1.1);
+}

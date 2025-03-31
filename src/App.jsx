@@ -8,6 +8,7 @@ import Category from './pages/Category/Category'
 import Item from './pages/Item/Item';
 import Cart from './components/Cart/Cart';
 import CategoryList from './components/CategoryList/CategoryList';
+import './App.css'
 function App() {
   return (
     <>

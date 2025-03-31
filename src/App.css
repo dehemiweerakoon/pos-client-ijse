@@ -1,0 +1,12 @@
+.hover-zoom img {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .hover-zoom:hover img {
+    transform: scale(1.1);
+  }
+  body{
+    background-color: rgba(246, 255, 251, 0.927); 
+    background-size: cover;
+    background-image: none !important
+  }

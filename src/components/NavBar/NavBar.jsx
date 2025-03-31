@@ -102,7 +102,9 @@ const NavBar = () => {
                             <Form.Control
                               type="text"
                               placeholder="Search"
-                              className="rounded-5 p-2"
+                              className="rounded-5 p-2 mx-3"
+            
+                              maxLength={"20"}
                               style={{ paddingRight: "40px" }} 
                               value={searchInput}// Add padding to prevent text overlap with the icon
                             onChange={handlesearchvalue}
