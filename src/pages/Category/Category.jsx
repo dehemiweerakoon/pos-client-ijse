@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import { getRequest, postRequest } from '../../services/ApiSerives'
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap';
@@ -12,6 +12,8 @@ const Category = () => {
   const {id} = useParams();
   const [items,setItems] = useState([]);
   const [images,setImages] = useState([]);
+
+  
   const getCateoryItem=async()=>{
     const response = await getRequest(`/item/category/${id}`);
     console.log(response.data);
@@ -32,7 +34,7 @@ const Category = () => {
       }
       //console.log(save_cart);
       const respnose = await postRequest(`/${user_id}/addItem/${item_id}/${1}`);
-      window.location.reload();
+      
     }
   const getImage =async() =>{
     console.log("")

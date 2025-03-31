@@ -9,8 +9,6 @@ import Item from './pages/Item/Item';
 import Cart from './components/Cart/Cart';
 import CategoryList from './components/CategoryList/CategoryList';
 function App() {
- 
-
   return (
     <>
     <BrowserRouter>
@@ -18,9 +16,9 @@ function App() {
       <Route element={<ProtectedUtills/>}>
       <Route path='/home' element={<Home/>}/>
       <Route path='/cart' element={<Cart/>}/>
-       <Route path='category/:id' element={<Category/>}/>
-       <Route path='/search/items' element={<CategoryList/>}/>
-       <Route path='/items' element={<Item/>}/>
+      <Route path='category/:id' element={<Category/>}/>
+      <Route path='/search/items' element={<CategoryList/>}/>
+      <Route path='/items' element={<Item/>}/>
       </Route>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>

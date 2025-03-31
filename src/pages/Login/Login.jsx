@@ -61,10 +61,10 @@ const Login = () => {
         <h2 className='d-flex justify-content-center'>Login</h2>
       <FloatingLabel
         controlId="floatingInput"
-        label="Email address"
+        label="Username"
         className="mb-3 p-1"
       >
-        <Form.Control type="email" placeholder="name@example.com" className='rounded-3 p-3' value={username} onChange={onHandleEmail}/>
+        <Form.Control type="text" placeholder="name@example.com" className='rounded-3 p-3' value={username} onChange={onHandleEmail}/>
       </FloatingLabel>
       <FloatingLabel controlId="floatingPassword" label="Password" className='p-1'>
         <Form.Control type="password" placeholder="Password" className='rounded-3 p-3'  value={password} onChange={onHandlePassword}/>
